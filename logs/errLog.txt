@@ -3,3 +3,6 @@
 20240309	13:37:45	679297ca-8197-4ee2-89df-cf9e39769dc8	ReferenceError: req is not defined
 20240309	13:37:46	f0c35126-0bbb-494c-98cf-9134f724101c	ReferenceError: req is not defined
 20240309	13:37:49	f1ec5473-3f4a-4b4a-be1c-6d8db28ce93f	ReferenceError: req is not defined
+20240312	08:08:48	1ff86049-8d19-4bff-817d-0c591c8a0f84	ReferenceError: runInNewContext is not defined
+20240312	08:09:52	e0f41243-758c-4e1a-8f88-d038a6d71233	TypeError: req.json is not a function
+20240312	08:10:14	9682c6b3-a013-4941-953a-ca9208a02bfb	TypeError: Cannot read properties of undefined (reading 'firstname')
