@@ -7,3 +7,6 @@
 20240312	08:09:52	e0f41243-758c-4e1a-8f88-d038a6d71233	TypeError: req.json is not a function
 20240312	08:10:14	9682c6b3-a013-4941-953a-ca9208a02bfb	TypeError: Cannot read properties of undefined (reading 'firstname')
 20240312	12:37:13	0f545007-6f53-4a6c-ae3d-04890e962136	TypeError: data.sendEmployees is not a function
+20240313	06:34:51	f9bd40d7-6bf7-45a9-a0ab-a8e60cbb8933	SyntaxError: Expected ',' or '}' after property value in JSON at position 36 (line 1 column 37)
+20240313	06:48:35	cdf10e62-954f-4d8a-8433-1515fe20c08f	SyntaxError: Unexpected non-whitespace character after JSON at position 39 (line 2 column 1)
+20240313	06:48:55	6c154577-a0b3-4cca-98bb-1cccf381c675	SyntaxError: Unexpected non-whitespace character after JSON at position 38 (line 1 column 39)
