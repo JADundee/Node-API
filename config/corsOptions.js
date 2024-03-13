@@ -1,7 +1,5 @@
 //Cross Origin Resource Sharing
-const whitelist = [
-    'http://127.0.0.1.5500'
-]
+const whitelist = require('./whitelist')
 const corsOptions = {
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1  /* remove after dev -> */ || !origin) {

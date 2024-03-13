@@ -3,14 +3,21 @@ const app = express()
 const path = require('path')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
-const {logEvents, logger} = require('./middleware/logEvents')
+const { logger } = require('./middleware/logEvents')
 const errorHandler = require('./middleware/errorHandler')
+const verifyJWT = require('./middleware/verifyJWT')
+const cookieParser = require('cookie-parser')
+const credentials = require('./middleware/credentials')
 const PORT = process.env.PORT || 3500
 
 // custom middleware logger
 app.use(logger)
 
+// handle options credentials check - before CORS
+// fetch cookies credentials requirement
+app.use(credentials)
 
+// Cross Origin Resource Sharing
 app.use(cors(corsOptions))
 
 // built-in middleware to handle urlencoded data aka form data
@@ -20,7 +27,10 @@ app.use(express.urlencoded({ extended: false}))
 // built-in middleware for json
 app.use(express.json())
 
-//serve static files
+// middleware for cookies
+app.use(cookieParser())
+
+// serve static files
 app.use('/', express.static(path.join(__dirname, '/public')))
 /* app.use('/subdir', express.static(path.join(__dirname, '/public'))) */
 
@@ -28,10 +38,14 @@ app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/', require('./routes/root'))
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
+app.use('/refresh', require('./routes/refresh'))
+app.use('/logout', require('./routes/logout'))
 /* app.use('/subdir', require('./routes/subdir')) */
+
+app.use(verifyJWT)
 app.use('/employees', require('./routes/api/employees'))
 
-/* //Route handlers
+/* // route handlers
 app.get('/hello(.html)?', (req, res, next) => {
     console.log('attempted to load hello.html')
     next()
@@ -40,7 +54,7 @@ app.get('/hello(.html)?', (req, res, next) => {
 }) */
 
 
-/* //chaining route handlers
+/* // chaining route handlers
 const one = (req, res, next) => {
     console.log('one')
     next()
@@ -65,7 +79,7 @@ app.all('*', (req, res) => {
     } else if (req.accepts('json')) {
         res.json({ error: '404 Not Found'})
     } else {
-        res.type('txt').send('404 Not Founf')
+        res.type('txt').send('404 Not Found')
     }
     
 })

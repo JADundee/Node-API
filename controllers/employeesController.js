@@ -16,7 +16,7 @@ const createNewEmployee = (req, res) => {
     }) */
 
     const newEmployee = {
-        id: data.employees[data.employees.length - 1].id + 1 || 1,
+        id: data.employees?.length ? data.employees[data.employees.length - 1].id + 1 : 1,
         firstname: req.body.firstname,
         lastname: req.body.lastname
     }
@@ -26,7 +26,7 @@ const createNewEmployee = (req, res) => {
     }
 
     data.setEmployees([...data.employees, newEmployee])
-    res.json(data.employees)
+    res.status(201).json(data.employees)
 }
 
 const updateEmployee = (req, res) => {
