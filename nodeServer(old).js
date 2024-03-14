@@ -1,4 +1,4 @@
-const http = require('http')
+/* const http = require('http')
 const path = require('path')
 const fs = require('fs')
 const fsPromises = require('fs').promises
@@ -105,3 +105,4 @@ server.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 /* myEmitter.on('log', (msg) => logEvents(msg))
 
 myEmitter.emit('log', 'log event emitted') */
+ 
