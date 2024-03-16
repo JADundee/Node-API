@@ -2,7 +2,7 @@ const Employee = require('../model/Employee')
 
 const getAllEmployees = async (req, res) => {
     const employees = await Employee.find()
-    if (!employees) return res.sendStatus(204).json({ 'message': 'No employees found.' })
+    if (!employees) return res.status(204).json({ 'message': 'No employees found.' })
     res.json(employees)
 
 }
@@ -46,12 +46,12 @@ const deleteEmployee = async (req, res) => {
     if (!employee) {
         return res.status(204).json({ "message": `No employee matchesID ${req.body.id} ` })
     }
-   const result = await employee.deleteOne({ _id: req.body.id })
+   const result = await employee.deleteOne() // { _id: req.body.id }
     res.json(result)
 }
 
 const getEmployee = async (req, res) => {
-    if (!req?.params?.id) return res.status(400).json({ 'message': 'Employee required.' })
+    if (!req?.params?.id) return res.status(400).json({ 'message': 'Employee ID required.' })
     const employee = await Employee.findOne({ _id: req.params.id}).exec()
     if (!employee) {
         return res.status(204).json({ "message": `No employee matchesID ${req.params.id} ` })
