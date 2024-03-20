@@ -9,7 +9,7 @@ const handleLogout = async (req, res) => {
     // is refreshToken in DB?
     const foundUser = await User.findOne({ refreshToken }).exec()
     if (!foundUser) {
-        res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true }) // secure: true - only serves on https for production
+        res.clearCookie('jwt', { httpOnly: true, secure: true, sameSite: 'None', secure: true }) // secure: true - only serves on https for production
         return res.sendStatus(204) // successful, no content to send back
     }
     // delete refreshToken in DB
@@ -17,7 +17,7 @@ const handleLogout = async (req, res) => {
     const result = await foundUser.save()
     console.log(result)
 
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true }) // secure: true - only serves on https for production
+    res.clearCookie('jwt', { httpOnly: true, secure: true, sameSite: 'None', secure: true }) // secure: true - only serves on https for production
     res.sendStatus(204) // successful, no content to send back
 }
 

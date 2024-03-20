@@ -28,7 +28,7 @@ app.use(cors(corsOptions))
 
 // built-in middleware to handle urlencoded data aka form data
 //'content-type: application/x-www-form-urlencoded'
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: false }))
 
 // built-in middleware for json
 app.use(express.json())
@@ -47,13 +47,14 @@ app.use('/refresh', require('./routes/refresh'))
 app.use('/logout', require('./routes/logout'))
 app.use(verifyJWT)
 app.use('/employees', require('./routes/api/employees'))
+app.use('/users', require('./routes/api/users'))
 
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
         res.sendFile(path.join(__dirname, 'views', '404.html'))
     } else if (req.accepts('json')) {
-        res.json({ error: '404 Not Found'})
+        res.json({ "error" : '404 Not Found'})
     } else {
         res.type('txt').send('404 Not Found')
     }

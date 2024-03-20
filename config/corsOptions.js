@@ -1,5 +1,6 @@
 //Cross Origin Resource Sharing
 const whitelist = require('./whitelist')
+
 const corsOptions = {
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1  /* remove after dev -> */ || !origin) {
